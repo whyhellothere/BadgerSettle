@@ -122,7 +122,7 @@ public class Sett {
     if (topBadger == null) {
       topBadger = newBadger;
     }
-    if (current != null || newBadger != null) {
+    if (current != null && newBadger != null) {
       if (newBadger.getSize() == current.getSize()) {
         throw new java.lang.IllegalArgumentException(
             "WARNING: failed to settle the badger with size " + newBadger.getSize()
