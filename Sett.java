@@ -84,12 +84,12 @@ public class Sett {
   }
 
   public int getHeight() {
-    return getHeightHelper(topBadger) + 1;
+    return getHeightHelper(topBadger);
   }
 
   private int getHeightHelper(Badger current) {
     if (current == null) {
-      return -1;
+      return 0;
     } else {
       return Math.max(getHeightHelper(current.getLeftLowerNeighbor()),
           getHeightHelper(current.getRightLowerNeighbor())) + 1;
