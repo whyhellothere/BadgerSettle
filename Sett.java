@@ -122,21 +122,24 @@ public class Sett {
     if (topBadger == null) {
       topBadger = newBadger;
     }
-    if (newBadger.getSize() == current.getSize()) {
-      throw new java.lang.IllegalArgumentException("WARNING: failed to settle the badger with size "
-          + newBadger.getSize() + ", as there is already a badger with the same size in this sett");
-    }
-    if (newBadger.getSize() > current.getSize()) {
-      if (current.getRightLowerNeighbor() == null) {
-        current.setRightLowerNeighbor(newBadger);
-      } else {
-        settleHelper(current.getRightLowerNeighbor(), newBadger);
+    if (current != null || newBadger != null) {
+      if (newBadger.getSize() == current.getSize()) {
+        throw new java.lang.IllegalArgumentException(
+            "WARNING: failed to settle the badger with size " + newBadger.getSize()
+                + ", as there is already a badger with the same size in this sett");
       }
-    } else {
-      if (current.getLeftLowerNeighbor() == null) {
-        current.setLeftLowerNeighbor(newBadger);
+      if (newBadger.getSize() > current.getSize()) {
+        if (current.getRightLowerNeighbor() == null) {
+          current.setRightLowerNeighbor(newBadger);
+        } else {
+          settleHelper(current.getRightLowerNeighbor(), newBadger);
+        }
       } else {
-        settleHelper(current.getLeftLowerNeighbor(), newBadger);
+        if (current.getLeftLowerNeighbor() == null) {
+          current.setLeftLowerNeighbor(newBadger);
+        } else {
+          settleHelper(current.getLeftLowerNeighbor(), newBadger);
+        }
       }
     }
   }
