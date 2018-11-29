@@ -84,7 +84,7 @@ public class Sett {
   }
 
   public int getHeight() {
-    return getHeightHelper(topBadger);
+    return getHeightHelper(topBadger) + 1;
   }
 
   private int getHeightHelper(Badger current) {
