@@ -41,7 +41,7 @@ public class Sett {
   }
 
   private Badger findHelper(Badger current, int size) {
-    if(current==null) { // if the toBadger is null, it throws
+    if(current==null) { // if the topBadger is null, it throws
       throw new NoSuchElementException("WARNING: failed to find a badger with size " + size 
           + " in the sett");
     }
@@ -120,7 +120,7 @@ public class Sett {
 
   private void settleHelper(Badger current, Badger newBadger) {
 
-    if(current==null) { // if the BST is empty at this point
+    if(topBadger==null) { // if the BST is empty at this point
       topBadger = newBadger; // assigns and exits function
     } else { // if the BST is not empty
       if(current.getSize()>newBadger.getSize()) {

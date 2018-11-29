@@ -72,9 +72,11 @@ public class P9Tests {
      *          12              first level
      *      6        18         second level
      *    3   9   15    21      third level
-     *  1                       fourth level
+     *  1                   30    fourth level
+     *                          40 fifth
+     *                              50 sixth
      */
-    
+
     Sett sett = new Sett();
     sett.settleBadger(12);
     if(sett.getTopBadger().getSize()!=12) { // checks to make sure the top badger is correct
@@ -83,7 +85,7 @@ public class P9Tests {
     sett.settleBadger(6); // adds 3 more elements
     sett.settleBadger(3);
     sett.settleBadger(1);
-    if(sett.getHeight()!=4) { // checks the current height of the BST
+    if(sett.getHeight()!=3) { // checks the current height of the BST
       passed = false;
     }
     sett.settleBadger(18); // adds 4 more elements
@@ -94,7 +96,7 @@ public class P9Tests {
     if(sett.getTopBadger().getRightLowerNeighbor().getLeftLowerNeighbor().getSize()!=15) {
       passed = false;
     }
-    
+
     // tests the getAllBadgers method
     ArrayList<Badger> list = (ArrayList<Badger>) sett.getAllBadgers(); // gets the list
     String badgerSize = ""; // creates a string to compare values in list
@@ -109,24 +111,30 @@ public class P9Tests {
     if(sett.getLargestBadger().getSize()!=21) { // checks the correct size of the largest badger
       passed = false;
     }
-    
+
     sett.settleBadger(30);
     sett.settleBadger(40);
     sett.settleBadger(50);
-    
-    if(sett.getHeight()!=6) {
+
+    if(sett.getHeight()!=5) {
       System.out.println(sett.getHeight());
       passed = false;
     }
-    
+
+    try {
+      sett.settleBadger(1);
+    } catch(IllegalArgumentException e) {
+      System.out.println("caught error");
+    }
+
     // tests the clear method
     sett.clear();
     if(sett.getTopBadger()!=null) { // if the topBadger is not null then the list is not empty
       passed = false;
     }
-    
+
     return passed;
-    
+
   }
 
 
