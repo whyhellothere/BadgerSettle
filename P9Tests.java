@@ -85,7 +85,7 @@ public class P9Tests {
     sett.settleBadger(6); // adds 3 more elements
     sett.settleBadger(3);
     sett.settleBadger(1);
-    if(sett.getHeight()!=3) { // checks the current height of the BST
+    if(sett.getHeight()!=4) { // checks the current height of the BST
       passed = false;
     }
     sett.settleBadger(18); // adds 4 more elements
@@ -116,7 +116,7 @@ public class P9Tests {
     sett.settleBadger(40);
     sett.settleBadger(50);
 
-    if(sett.getHeight()!=5) {
+    if(sett.getHeight()!=6) {
       System.out.println(sett.getHeight());
       passed = false;
     }
