@@ -88,23 +88,11 @@ public class Sett {
   }
 
   private int getHeightHelper(Badger current) {
-    int leftHeight = 1; // starts with value of one because the existing depth is one
-    int rightHeight = 1;
-    if(current.getLeftLowerNeighbor()!=null) { // checks if left is null
-      // sets the left height to the new left height and recursive calls
-      leftHeight = getHeightHelper(current.getLeftLowerNeighbor())+1;
-    }
-    if(current.getRightLowerNeighbor()!=null) { // checks if right is null
-      // sets the right height to the new right height
-      rightHeight = getHeightHelper(current.getRightLowerNeighbor())+1;
-    }
-
-    // compares the left and right height for each instance of recursion, 
-    // then returns the longest branch and travels down that one
-    if(leftHeight > rightHeight) { // if the left is greater, return left
-      return leftHeight;
-    } else { // if right is greater or both are equal, return right
-      return rightHeight;
+    if (current == null) {
+      return -1;
+    } else {
+      return Math.max(getHeightHelper(current.getLeftLowerNeighbor()),
+          getHeightHelper(current.getRightLowerNeighbor())) + 1;
     }
   }
 
