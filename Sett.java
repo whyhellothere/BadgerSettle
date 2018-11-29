@@ -119,25 +119,24 @@ public class Sett {
   }
 
   private void settleHelper(Badger current, Badger newBadger) {
-
-    if(topBadger==null) { // if the BST is empty at this point
-      topBadger = newBadger; // assigns and exits function
-    } else { // if the BST is not empty
-      if(current.getSize()>newBadger.getSize()) {
-        if(current.getLeftLowerNeighbor()!=null) { // if the left is not empty
-          settleHelper(current.getLeftLowerNeighbor(), newBadger);
-        } else {
-          current.setLeftLowerNeighbor(newBadger);
-        }
-      } else if(current.getSize()<newBadger.getSize()){
-        if(current.getRightLowerNeighbor()!=null) {
-          settleHelper(current.getRightLowerNeighbor(), newBadger);
-        } else { // if the right is empty
-          current.setRightLowerNeighbor(newBadger); // settle the badger
-        }
+    if (topBadger == null) {
+      topBadger = newBadger;
+    }
+    if (newBadger.getSize() == current.getSize()) {
+      throw new java.lang.IllegalArgumentException("WARNING: failed to settle the badger with size "
+          + newBadger.getSize() + ", as there is already a badger with the same size in this sett");
+    }
+    if (newBadger.getSize() > current.getSize()) {
+      if (current.getRightLowerNeighbor() == null) {
+        current.setRightLowerNeighbor(newBadger);
       } else {
-        throw new IllegalArgumentException("WARNING: failed to settle the badger with size " 
-            + newBadger.getSize() + ", as there is already a badger with the same size in this sett");
+        settleHelper(current.getRightLowerNeighbor(), newBadger);
+      }
+    } else {
+      if (current.getLeftLowerNeighbor() == null) {
+        current.setLeftLowerNeighbor(newBadger);
+      } else {
+        settleHelper(current.getLeftLowerNeighbor(), newBadger);
       }
     }
   }
