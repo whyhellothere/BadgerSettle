@@ -1,80 +1,103 @@
 import java.util.ArrayList;
 
+/**
+ * Testing method for Sett and Badger classes. Runs methods that check implementation
+ *
+ */
 public class P9Tests {
 
-
+  /**
+   * Main method that runs all the tests
+   * @param args - strings of code that run it
+   */
   public static void main(String args[]) {
 
-    if(runAllBadgerTests() && runAllSettTests()) {
+    if(runAllBadgerTests() && runAllSettTests()) { // if both are true tests are passed
       System.out.println("All tests clear");
     }
 
   }
 
+  /**
+   * Runs tests on Badger class
+   * @return boolean describing if test passed
+   */
   public static boolean runAllBadgerTests() {
     return (testBadgerLeft() && testBadgerRight());
   }
 
+  /**
+   * Runs test on Sett class
+   * @return boolean describing if test passed
+   */
   public static boolean runAllSettTests() {
     return testSettAdd();
   }
 
+  /**
+   * Adds several badgers to left nodes, and checks if values are correct
+   * @return
+   */
   private static boolean testBadgerLeft() {
-    boolean passed = true;
+    boolean passed = true; // boolean that is returned
 
     Badger b1 = new Badger(10); // creates 4 badgers
     Badger b2 = new Badger(8);
     Badger b3 = new Badger(20);
     Badger b4 = new Badger(-4);
-    b1.setLeftLowerNeighbor(b2); // checks the value of each badger
-    if(b1.getLeftLowerNeighbor().getSize()!=8) {
-      passed = false;
+    b1.setLeftLowerNeighbor(b2); // sets the badger to left node
+    if(b1.getLeftLowerNeighbor().getSize()!=8) { // checks the value of each badger
+      passed = false; // returns false if value incorrect
     }
-    b2.setLeftLowerNeighbor(b4);
-    if(b2.getLeftLowerNeighbor().getSize()!=-4) {
-      passed = false;
+    b2.setLeftLowerNeighbor(b4); // sets the badger to left node
+    if(b2.getLeftLowerNeighbor().getSize()!=-4) { // checks the value of each badger
+      passed = false; // returns false if value incorrect
     }
-    b2.setLeftLowerNeighbor(b3);
-    if(b2.getLeftLowerNeighbor().getSize()!=20) {
-      passed = false;
+    b2.setLeftLowerNeighbor(b3); // sets the badger to left node
+    if(b2.getLeftLowerNeighbor().getSize()!=20) { // checks the value of each badger
+      passed = false; // returns false if value incorrect
     }
     return passed;
   }
 
   private static boolean testBadgerRight() {
-    boolean passed = true;
+    boolean passed = true; // boolean that is returned
 
     Badger b1 = new Badger(12); // creates 4 badgers
     Badger b2 = new Badger(15);
     Badger b3 = new Badger(6);
     Badger b4 = new Badger(-4);
-    b1.setRightLowerNeighbor(b2); // checks the value of each badger
-    if(b1.getRightLowerNeighbor().getSize()!=15) {
-      passed = false;
+    b1.setRightLowerNeighbor(b2); // sets the badger to left node
+    if(b1.getRightLowerNeighbor().getSize()!=15) { // checks the value of each badger
+      passed = false; // returns false if value incorrect
     }
-    b2.setRightLowerNeighbor(b4);
-    if(b2.getRightLowerNeighbor().getSize()!=-4) {
-      passed = false;
+    b2.setRightLowerNeighbor(b4); // sets the badger to left node
+    if(b2.getRightLowerNeighbor().getSize()!=-4) { // checks the value of each badger
+      passed = false; // returns false if value incorrect
     }
-    b2.setRightLowerNeighbor(b3);
-    if(b2.getRightLowerNeighbor().getSize()!=6) {
-      passed = false;
+    b2.setRightLowerNeighbor(b3); // sets the badger to left node
+    if(b2.getRightLowerNeighbor().getSize()!=6) { // checks the value of each badger
+      passed = false; // returns false if value incorrect
     }
     return passed;
   }
 
+  /**
+   * Tests all methods of Sett. All methods are tested here because the tree is created here
+   * @return boolean describing if test passed
+   */
   private static boolean testSettAdd() {
 
-    boolean passed = true;
+    boolean passed = true; // boolean that is returned
 
     /*
      * Creates this tree structure:
      *          12              first level
      *      6        18         second level
      *    3   9   15    21      third level
-     *  1                   30    fourth level
-     *                          40 fifth
-     *                              50 sixth
+     *  1                 30    fourth level
+     *                      40  fifth
+     *                       50 sixth
      */
 
     Sett sett = new Sett();
@@ -112,16 +135,15 @@ public class P9Tests {
       passed = false;
     }
 
-    sett.settleBadger(30);
+    sett.settleBadger(30); // adds 3 more badgers on the right side of the tree
     sett.settleBadger(40);
     sett.settleBadger(50);
 
-    if(sett.getHeight()!=6) {
-      System.out.println(sett.getHeight());
+    if(sett.getHeight()!=6) { // checks the height
       passed = false;
     }
 
-    try {
+    try { // tests to make sure same size badgers are caught
       sett.settleBadger(1);
     } catch(IllegalArgumentException e) {
       System.out.println("caught error");
